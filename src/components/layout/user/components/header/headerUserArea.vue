@@ -42,7 +42,6 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import userD from "@/store/modules/user";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -79,7 +78,12 @@ export default Vue.extend({
   methods: {
     logout() {
       localStorage.removeItem("user");
-      this.user = userD.state;
+      this.user.islogin = false;
+      this.user.username = "";
+      this.user.email = "";
+      this.user.qq = 0;
+      this.user.iconUrl = "";
+      this.user.cb = 0;
       this.$router.push("/user/login");
     }
   },

@@ -1,8 +1,7 @@
 <template>
   <div class="app-footer">
     <div class="app-footer__inner text-center">
-      Copyright&nbsp;&copy;&nbsp;2019&nbsp;CCBOT.us
-      <br />Theme&nbsp;From&nbsp;DashboardPack.com
+      Copyright &copy; CCBOT 2020
     </div>
   </div>
 </template>

@@ -2,14 +2,14 @@
 
 // Variables
 
-$app-container-bg: #f1f4f6;
-$app-sidebar-bg: #ffffff;
-$app-header-bg: #fafbfc;
-$app-header-logo-bg: rgba(255, 255, 255, .9);
+$app-container-bg: #333333;
+$app-sidebar-bg: #333333;
+$app-header-bg: #333333;
+$app-header-logo-bg: rgba(0, 0, 0, .9);
 
 // Content
 
-.app-theme-white {
+.app-theme {
 
   &.app-container {
     background: $app-container-bg;
@@ -26,7 +26,7 @@ $app-header-logo-bg: rgba(255, 255, 255, .9);
   }
 
   .app-page-title {
-    background: rgba(255, 255, 255, .45);
+    background: rgba(0, 0, 0, .45);
   }
 
   .app-sidebar .app-header__logo,

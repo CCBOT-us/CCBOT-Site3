@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-100 bg-plum-plate bg-animation">
+    <div class="h-100 bg-premium-dark bg-animation">
       <div class="d-flex h-100 justify-content-center align-items-center">
         <b-col md="8" class="mx-auto app-login-box">
           <div class="app-logo-inverse mx-auto mb-3" />
@@ -34,21 +34,22 @@
                 </b-form-group>
                 <b-form-checkbox name="check" id="checkKeepLogin" v-model="modelKeepLogin">保持登录状态</b-form-checkbox>
                 <div class="divider" />没有账户？
-                <router-link to="/user/p/register" class="text-primary">现在注册！</router-link>
+                <router-link to="/user/register" class="text-primary">现在注册</router-link>&nbsp;|&nbsp;
+                <router-link to="/user/forgotPassword" class="text-primary">找回密码</router-link>
               </div>
-              <div class="modal-footer clearfix">
+              <div class="modal-footer clearfix justify-content-center">
                 <div class="float-left">
-                  <router-link to="/user/p/forgotpassword" class="btn-lg btn btn-link">找回密码</router-link>
+                  <b-button variant="primary" size="lg" @click="submit">登录</b-button>
                 </div>
                 <div class="float-right">
-                  <b-button variant="primary" size="lg" @click="submit">登录</b-button>
+                  <router-link to="/">
+                    <b-button variant="primary" size="lg">返回首页</b-button>
+                  </router-link>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            class="text-center text-white opacity-8 mt-3"
-          >Copyright &copy; CCBOT &amp; ArchitectUI 2019</div>
+          <div class="text-center text-white opacity-8 mt-3">Copyright &copy; CCBOT 2020</div>
         </b-col>
       </div>
     </div>

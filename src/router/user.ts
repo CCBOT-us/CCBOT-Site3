@@ -20,6 +20,24 @@ const router = [
       needlogin: false
     },
     component: () => import('../views/user/auth/login.vue')
+  },
+  {
+    path: "/user/register",
+    meta: {
+      type: "userpage",
+      layout: "userpage_page",
+      needlogin: false
+    },
+    component: () => import('../views/user/auth/register.vue')
+  },
+  {
+    path: "/user/TOS",
+    meta: {
+      type: "userpage",
+      layout: "default",
+      needlogin: false
+    },
+    component: () => import('../views/user/auth/TOS.vue')
   }
 ]
 

@@ -30,42 +30,52 @@ export default Vue.extend({
       sessionStorage.setItem("store", JSON.stringify(this.$store.state));
     });
 
-    /* 刷新CB */
-    if ((this.$store.state as CStore).user.islogin) {
-      const time = new Date().getTime();
-      /* 验证间隔时间 */
-      const lastTimeStr = localStorage.getItem("lastCBTime");
-      if (lastTimeStr) {
-        const lastTime = parseInt(lastTimeStr);
-        if (time < lastTime + 15 * 1000) {
-          return;
+    this.refresh(); // 刷新数据
+  },
+  watch: {
+    $route: "refresh" // 当导航变动时刷新数据
+  },
+  methods: {
+    refresh() {
+      /* 刷新CB */
+      if ((this.$store.state as CStore).user.islogin) {
+        const time = new Date().getTime();
+        /* 验证间隔时间 */
+        const lastTimeStr = localStorage.getItem("lastCBTime");
+        if (lastTimeStr) {
+          const lastTime = parseInt(lastTimeStr);
+          if (time < lastTime + 15 * 1000) {
+            return;
+          }
         }
+        localStorage.setItem("lastCBTime", time.toString());
+        fetch(
+          (this.$store.state as CStore).config.api_base + "auth/getCB.php",
+          {
+            credentials: "include"
+          }
+        )
+          .then(data => {
+            if (data.ok) {
+              return data.json();
+            }
+            throw new Error(data.status + " | " + data.statusText);
+          })
+          .then(data => {
+            if (data.s == 200) {
+              (this.$store.state as CStore).user.cb = data.cb;
+            } else {
+              throw new Error("Can't get CB: " + JSON.stringify(data));
+            }
+          })
+          .catch(error => {
+            throw new Error(error);
+          });
       }
-      localStorage.setItem("lastCBTime", time.toString());
-      fetch((this.$store.state as CStore).config.api_base + "auth/getCB.php", {
-        credentials: "include"
-      })
-        .then(data => {
-          if (data.ok) {
-            return data.json();
-          }
-          throw new Error(data.status + " | " + data.statusText);
-        })
-        .then(data => {
-          if (data.s == 200) {
-            (this.$store.state as CStore).user.cb = data.cb;
-          } else {
-            throw new Error("Can't get CB: " + JSON.stringify(data));
-          }
-        })
-        .catch(error => {
-          throw new Error(error);
-        });
     }
   }
 });
 </script>
 
 <style lang="scss">
-
 </style>
